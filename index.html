@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Armenia MDS</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<base target="_blank">
+<link rel="stylesheet" type="text/css" href="./Qgis2threejs.css">
+<script src="./threejs/three.min.js"></script>
+<script src="./threejs/OrbitControls.js"></script>
+<script src="./threejs/ViewHelper.js"></script>
+<script src="./Qgis2threejs.js"></script>
+<script src="./dat-gui/dat.gui.min.js"></script>
+<script src="./dat-gui_panel.js"></script>
+</head>
+<body>
+  <div>
+    <img id="logo" src="/logo.png" alt="Logo">
+    <h1>MODELO DIGITAL DE SUPERFICIE SECTOR ARMENIA</h1>
+  </div>
+
+<div id="view">
+  <div id="northarrow"></div>
+  <div id="navigation"></div>
+</div>
+
+<!-- popup -->
+<div id="popup">
+  <div id="closebtn">&times;</div>
+  <div id="popupbar"></div>
+  <div id="popupbody">
+    <div id="popupcontent"></div>
+
+    <!-- query result -->
+    <div id="queryresult">
+      <table id="qr_coords_table">
+        <caption>Coordenadas<div id="zoomtopoint" class="action-zoom zoombtn"></div></caption>
+        <tr><td id="qr_coords"></td></tr>
+      </table>
+
+      <table id="qr_layername_table">
+        <caption>Capa <div id="zoomtolayer" class="action-zoom zoombtn"></div></caption>
+        <tr><td id="qr_layername"></td></tr>
+      </table>
+
+      <table id="qr_attrs_table">
+        <caption>Attributos</caption>
+      </table>
+
+      <!-- camera actions and measure tool -->
+      <div id="orbitbtn" class="action-btn action-orbit">Orbitar</div>
+      <div id="measurebtn" class="action-btn">Medir Distancia</div>
+    </div>
+
+    <!-- page info -->
+    <div id="pageinfo">
+      <h1>URL</h1>
+      <div><input id="urlbox" type="text"></div>
+
+      <h1>Uso</h1>
+      <table id="usage">
+        <tr><td colspan="2" class="star">Mouse</td></tr>
+        <tr><td>Botón izquierdo + Mover</td><td>Orbitar</td></tr>
+        <tr><td>Rueda del Mousel</td><td>Zoom</td></tr>
+        <tr><td>Notón derecho + Mover</td><td>Mover</td></tr>
+
+        <tr><td colspan="2" class="star">Teclas</td></tr>
+        <tr><td>Teclas de dirección</td><td>Mover Horizontalmente</td></tr>
+        <tr><td>Shift + Teclas de dirección</td><td>Orbitar</td></tr>
+        <tr><td>Ctrl + Teclas de dirección</td><td>Rotar</td></tr>
+        <tr><td>Shift + Ctrl + Up / Down</td><td>Acercar / Alejar</td></tr>
+        <tr><td>L</td><td>Alternar Visibilidad de Etiqueta</td></tr>
+        <tr><td>R</td><td>Iniciar / Detener Animación</td></tr>
+        <tr><td>W</td><td>Modo Wireframe</td></tr>
+        <tr><td>Shift + R</td><td>Resetear Posición Camara</td></tr>
+        <tr><td>Shift + S</td><td>Salvar Imagen</td></tr>
+      </table>
+
+      <h1>Acerca de</h1>
+      <div id="about">
+        Esta pagína fue elaborada con <a href="https://www.qgis.org/">QGIS</a> y <a href="https://github.com/minorua/Qgis2threejs">Qgis2threejs</a> plugin (version 2.7).
+        <div>Desarrollado por <a href="https://threejs.org/">three.js</a>,
+        <a href="https://code.google.com/p/dat-gui/">dat-gui</a>
+        <span id="lib_proj4js"> y <a href="https://trac.osgeo.org/proj4js/">Proj4js</a></span>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- progress bar -->
+<div id="progress"><div id="progressbar"></div></div>
+
+<!-- header and footer -->
+<div id="header"></div>
+<div id="footer"></div>
+
+<!-- animation -->
+<div id="narrativebox" class="ef1">
+  <div id="narbody">
+
+  </div>
+  <div id="nextbtn"></div>
+</div>
+
+<script>
+Q3D.Config.bgColor = 0xffffff;
+Q3D.Config.viewpoint = {lookAt:{x:504058.740053619,y:9971161.137698261,z:2510.122814567572},pos:{x:504769.5634080968,y:9971123.388273817,z:2888.830853948285}};
+Q3D.Config.localMode = true;
+
+var container = document.getElementById("view"),
+    app = Q3D.application,
+    gui = Q3D.gui;
+
+app.init(container);    // initialize viewer
+
+// load the scene
+app.loadSceneFile("./data/index/scene.js", function (scene) {
+  // scene file has been loaded
+  app.start();
+
+  gui.dat.initLayersFolder(scene);
+
+}, function (scene) {
+  // all relevant files have been loaded
+
+  if (Q3D.Config.gui.customPlane) {
+    var zMin = undefined,
+        zMax = undefined;
+    gui.dat.initCustomPlaneFolder(zMin, zMax);
+  }
+});
+</script>
+</body>
+</html>
