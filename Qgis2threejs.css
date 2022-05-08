@@ -10,27 +10,28 @@ body {
   overflow: hidden;
 }
 
+.barra{
+  display: flex;
+  width: 60%;
+  justify-content: flex-start;
+  align-items: center;
+  background-color:  #FFFFFF;
+}
+
 #logo{
-  float:left;
-  width: 7%;
-  background-color: #FFFFFF;
 
-
-
+  width: 10em;
 
 }
 
 
 
 h1{
-  width: 50vw;
+  width: 80%;
   display: block;
-  background-color: #27497C ;
-  color : #FFFFFF;
-  padding: 0.5em;
-  margin: 0 auto;
-  text-align: center;
+  color : #27497C;
   font-size: 1.5em;
+  font-weight: 900;
 
 
 }
@@ -505,4 +506,18 @@ table.measure tr > td:nth-child(2) {
 
 .nextbtn::before {
   content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMzYuNyAxOC4yIDY4LjUgNTAgMzYuNyA4MS44IiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS13aWR0aD0iMTQiIGZpbGw9Im5vbmUiIGNsYXNzPSJsYXllciIvPjwvc3ZnPg==");
+}
+
+@media (max-width: 680px) {
+  .barra{
+    flex-direction: column;
+    align-items:flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  #logo{
+    visibility: hidden;
+  }
 }
