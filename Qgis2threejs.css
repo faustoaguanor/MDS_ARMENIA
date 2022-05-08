@@ -12,10 +12,10 @@ body {
 
 #logo{
   float:left;
-  width: 9em;
+  width: 7%;
   background-color: #FFFFFF;
-  padding-right: 6.5em;
-  padding-left: 1.85em;
+  padding-right: 6em;
+
 
 
 }
@@ -23,13 +23,14 @@ body {
 
 
 h1{
-  width: 60vw;
+  width: 50vw;
   display: block;
   background-color: #27497C ;
   color : #FFFFFF;
   padding: 0.5em;
   margin: 0 auto;
   text-align: center;
+  font-size: 1.5em;
 
 
 }
