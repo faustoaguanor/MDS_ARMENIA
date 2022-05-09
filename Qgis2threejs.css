@@ -31,7 +31,7 @@ h1{
   display: block;
   color : #27497C;
   font-size: 1.5em;
-  font-weight: 900;
+  font-weight: 700;
 
 
 }
@@ -514,6 +514,8 @@ table.measure tr > td:nth-child(2) {
     align-items:flex-start;
   }
 }
+
+
 
 @media (max-width: 480px) {
   
